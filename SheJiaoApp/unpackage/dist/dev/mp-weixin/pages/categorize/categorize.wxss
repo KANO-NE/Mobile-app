@@ -1,0 +1,19 @@
+
+.sidebar-menu {
+	margin-top: 10px;
+	font-size: 30rpx;
+	border-right: 2px solid  #00aaff;
+}
+.sidebar-item {
+	padding: 20rpx 0rpx;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+.sidebar-item:hover {
+	background-color: #00aaff;
+	border-radius: 20rpx;
+}
+
+
+
+

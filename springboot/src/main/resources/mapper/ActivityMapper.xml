@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ActivityMapper">
+
+    <sql id="Base_Column_List">
+        id,name,introduce,img,user_id,num,time,type
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Activity">
+        select
+        activity.*,user.name as userName
+        from activity
+        left join user on activity.user_id = user.id
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="name != null"> and name like concat('%', #{name}, '%')</if>
+            <if test="introduce != null"> and introduce like concat('%', #{introduce}, '%')</if>
+            <if test="img != null"> and img like concat('%', #{img}, '%')</if>
+            <if test="userId != null"> and user_id like concat('%', #{userId}, '%')</if>
+            <if test="num != null"> and num like concat('%', #{num}, '%')</if>
+            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+            <if test="type != null"> and type like concat('%', #{type}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Activity">
+        select
+        activity.*,user.name as userName
+        from activity
+        left join user on activity.user_id = user.id
+        where activity.id = #{id}
+    </select>
+
+
+
+    <select id="selectHot" resultType="com.example.entity.Activity">
+        select activity.*
+        from activity
+        order by num desc  limit 6
+    </select>
+
+    <delete id="deleteById">
+        delete from activity
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Activity" useGeneratedKeys="true" keyProperty="id">
+        insert into activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="introduce != null">introduce,</if>
+            <if test="img != null">img,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="num != null">num,</if>
+            <if test="time != null">time,</if>
+            <if test="type != null">type,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="introduce != null">#{introduce},</if>
+            <if test="img != null">#{img},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="num != null">#{num},</if>
+            <if test="time != null">#{time},</if>
+            <if test="type != null">#{type},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Activity">
+        update activity
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="introduce != null">
+                introduce = #{introduce},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

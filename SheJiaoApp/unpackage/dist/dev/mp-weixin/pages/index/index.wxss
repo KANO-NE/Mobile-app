@@ -1,0 +1,9 @@
+
+.search {
+		border-radius: 50rpx;
+		height: 90rpx;
+		margin: 0rpx 30rpx;
+		background-color: white;
+}
+
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TopicMapper">
+
+    <sql id="Base_Column_List">
+        id,title,reply,num,time,name
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Topic">
+        select
+        <include refid="Base_Column_List" />
+        from topic
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="title != null"> and title like concat('%', #{title}, '%')</if>
+            <if test="reply != null"> and reply like concat('%', #{reply}, '%')</if>
+            <if test="num != null"> and num like concat('%', #{num}, '%')</if>
+            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+            <if test="name != null"> and name like concat('%', #{name}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Topic">
+        select
+        <include refid="Base_Column_List" />
+        from topic
+        where id = #{id}
+    </select>
+
+    <select id="selectHot" resultType="com.example.entity.Topic">
+        select topic.*
+        from topic
+        order by num desc  limit 3
+    </select>
+
+    <delete id="deleteById">
+        delete from topic
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Topic" useGeneratedKeys="true" keyProperty="id">
+        insert into topic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="title != null">title,</if>
+            <if test="reply != null">reply,</if>
+            <if test="num != null">num,</if>
+            <if test="time != null">time,</if>
+            <if test="name != null">name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="title != null">#{title},</if>
+            <if test="reply != null">#{reply},</if>
+            <if test="num != null">#{num},</if>
+            <if test="time != null">#{time},</if>
+            <if test="name != null">#{name},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Topic">
+        update topic
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="reply != null">
+                reply = #{reply},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

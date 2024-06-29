@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TopicreplyMapper">
+
+    <sql id="Base_Column_List">
+        id,topic_id,user_id,content,time
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Topicreply">
+        select
+        topicreply.*,user.name as userName,topic.title as topicTitle
+        from topicreply
+        left join user on topicreply.user_id = user.id
+        left join topic on topicreply.topic_id = topic.id
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="topicId != null"> and topic_id = #{topicId}</if>
+            <if test="userId != null"> and user_id = #{userId}</if>
+            <if test="content != null"> and content like concat('%', #{content}, '%')</if>
+            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Topicreply">
+        select
+        <include refid="Base_Column_List" />
+        from topicreply
+        where id = #{id}
+    </select>
+
+    <select id="selectByTopicId" resultType="com.example.entity.Topicreply">
+        select topicreply.*,user.name as userName,user.img as userImg
+        from topicreply
+        left join user on topicreply.user_id = user.id
+        where topicreply.topic_id = #{topicId}
+        order by id desc
+    </select>
+
+    <delete id="deleteById">
+        delete from topicreply
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Topicreply" useGeneratedKeys="true" keyProperty="id">
+        insert into topicreply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="topicId != null">topic_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="content != null">content,</if>
+            <if test="time != null">time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="topicId != null">#{topicId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="content != null">#{content},</if>
+            <if test="time != null">#{time},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Topicreply">
+        update topicreply
+        <set>
+            <if test="topicId != null">
+                topic_id = #{topicId},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

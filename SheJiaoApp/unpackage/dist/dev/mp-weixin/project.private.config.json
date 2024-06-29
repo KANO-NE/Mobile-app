@@ -1,0 +1,160 @@
+{
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "HealthMedicalApp",
+  "setting": {
+    "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/privacy/privacy",
+          "pathName": "pages/privacy/privacy",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/message/message",
+          "pathName": "pages/message/message",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "UserId=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/collect/collect",
+          "pathName": "pages/collect/collect",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/history/history",
+          "pathName": "pages/history/history",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/privacy/privacy",
+          "pathName": "pages/privacy/privacy",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/customer/customer",
+          "pathName": "pages/customer/customer",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/activityshow/activityshow",
+          "pathName": "pages/activityshow/activityshow",
+          "query": "ActivityId=1&ActivityRecordsId=6",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/activityshow/activityshow",
+          "pathName": "pages/activityshow/activityshow",
+          "query": "ActivityId=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/addactivity/addactivity",
+          "pathName": "pages/addactivity/addactivity",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/topicdetail/topicdetail",
+          "pathName": "pages/topicdetail/topicdetail",
+          "query": "TopicId=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/register/register",
+          "pathName": "pages/register/register",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/categorize/categorize",
+          "pathName": "pages/categorize/categorize",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/categorize/categorize",
+          "pathName": "pages/categorize/categorize",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/activitydetail/activitydetail",
+          "pathName": "pages/activitydetail/activitydetail",
+          "query": "ActivityId=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/topic/topic",
+          "pathName": "pages/topic/topic",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/topicdetail/topicdetail",
+          "pathName": "pages/topicdetail/topicdetail",
+          "query": "TopicId=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/me/me",
+          "pathName": "pages/me/me",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

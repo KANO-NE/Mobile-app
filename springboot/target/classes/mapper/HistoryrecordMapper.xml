@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.HistoryrecordMapper">
+
+    <sql id="Base_Column_List">
+        id,content_id,plate,user_id,time
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Historyrecord">
+        select
+        <include refid="Base_Column_List" />
+        from historyrecord
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="contentId != null"> and content_id = #{contentId}</if>
+            <if test="plate != null"> and plate = #{plate}</if>
+            <if test="userId != null"> and user_id = #{userId}</if>
+            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectUserTopic" resultType="com.example.entity.Historyrecord">
+        select
+        historyrecord.*, topic.id as topicId,topic.title as topicTitle
+        from historyrecord
+        join topic on content_id = topic.id
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="contentId != null"> and content_id = #{contentId}</if>
+            <if test="plate != null"> and plate = #{plate}</if>
+            <if test="userId != null"> and user_id = #{userId}</if>
+            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectUserActivity" resultType="com.example.entity.Historyrecord">
+        select
+        historyrecord.*, activity.id as activityId,activity.name as activityName
+        from historyrecord
+        join activity on content_id = activity.id
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="contentId != null"> and content_id = #{contentId}</if>
+            <if test="plate != null"> and plate = #{plate}</if>
+            <if test="userId != null"> and historyrecord.user_id = #{userId}</if>
+            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="selectById" resultType="com.example.entity.Historyrecord">
+        select
+        <include refid="Base_Column_List" />
+        from historyrecord
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from historyrecord
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Historyrecord" useGeneratedKeys="true" keyProperty="id">
+        insert into historyrecord
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="contentId != null">content_id,</if>
+            <if test="plate != null">plate,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="time != null">time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="contentId != null">#{contentId},</if>
+            <if test="plate != null">#{plate},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="time != null">#{time},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Historyrecord">
+        update historyrecord
+        <set>
+            <if test="contentId != null">
+                content_id = #{contentId},
+            </if>
+            <if test="plate != null">
+                plate = #{plate},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

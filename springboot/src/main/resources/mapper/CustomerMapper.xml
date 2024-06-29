@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CustomerMapper">
+
+    <sql id="Base_Column_List">
+        id,user_id,content,accept_id,time
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Customer">
+        select
+        a.*,b.name as userName,c.name as acceptName
+        from customer a
+        left join user b on a.user_id = b.id
+        left join user c on a.accept_id = c.id
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="userId != null"> and user_id like concat('%', #{userId}, '%')</if>
+            <if test="content != null"> and content like concat('%', #{content}, '%')</if>
+            <if test="acceptId != null"> and accept_id like concat('%', #{acceptId}, '%')</if>
+            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectByUserId" resultType="com.example.entity.Customer">
+        select customer.*,user.img as UserImg
+        from customer
+        left join user on customer.user_id = user.id
+        where user_id = #{id}
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Customer">
+        select
+        <include refid="Base_Column_List" />
+        from customer
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from customer
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Customer" useGeneratedKeys="true" keyProperty="id">
+        insert into customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="content != null">content,</if>
+            <if test="acceptId != null">accept_id,</if>
+            <if test="time != null">time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="content != null">#{content},</if>
+            <if test="acceptId != null">#{acceptId},</if>
+            <if test="time != null">#{time},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Customer">
+        update customer
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="acceptId != null">
+                accept_id = #{acceptId},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

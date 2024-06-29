@@ -1,0 +1,74 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/message/message",
+    "pages/categorize/categorize",
+    "pages/me/me",
+    "pages/login/login",
+    "pages/topicdetail/topicdetail",
+    "pages/topic/topic",
+    "pages/activitydetail/activitydetail",
+    "pages/activity/activity",
+    "pages/person/person",
+    "pages/register/register",
+    "pages/addactivity/addactivity",
+    "pages/activityshow/activityshow",
+    "pages/addtopic/addtopic",
+    "pages/customer/customer",
+    "pages/privacy/privacy",
+    "pages/history/history",
+    "pages/collect/collect",
+    "pages/search/search",
+    "pages/user/user",
+    "pages/test/test",
+    "pages/myactivity/myactivity",
+    "pages/mytopic/mytopic"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "有搭友",
+    "navigationBarBackgroundColor": "#00aaff",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "selectedColor": "#00aaff",
+    "color": "#666",
+    "list": [
+      {
+        "iconPath": "/static/icons/index.png",
+        "selectedIconPath": "static/icons/index_click.png",
+        "text": "首页",
+        "pagePath": "pages/index/index"
+      },
+      {
+        "iconPath": "/static/icons/categorize.png",
+        "selectedIconPath": "static/icons/categorize_click.png",
+        "text": "活动",
+        "pagePath": "pages/categorize/categorize"
+      },
+      {
+        "iconPath": "/static/icons/message.png",
+        "selectedIconPath": "static/icons/message_click.png",
+        "text": "消息",
+        "pagePath": "pages/message/message"
+      },
+      {
+        "iconPath": "/static/icons/my.png",
+        "selectedIconPath": "static/icons/my_click.png",
+        "text": "我",
+        "pagePath": "pages/me/me"
+      }
+    ]
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "使用小程序打开"
+    }
+  },
+  "usingComponents": {}
+}
